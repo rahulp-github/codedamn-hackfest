@@ -2,6 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Document() {
+
+
+    for (var i = 0; i < localStorage.length; i++){
+        $('body').append(localStorage.getItem(localStorage.key(i)));
+    }
+
+    
+
     return (
         <div className='document-container'>
             <div className='wrapper'>
