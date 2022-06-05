@@ -5,6 +5,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 export default function Document(props) {
     const [title, setTitle] = useState('');
     const [documentBody, setDocumentBody] = useState('');
+    const [lastStatement, setLastStatement] = useState('');
 
     // Get Document Id from URL
     const documentId = props.match.params.id;
@@ -41,12 +42,14 @@ export default function Document(props) {
             command: 'Alexa type *',
             callback: (textBody) => {
                 var text;
-                if (documentBody == '')
+                if (documentBody == ''){
                     text = capitalize(textBody);
+                }
                 else {
                     text = documentBody + ' ' + capitalize(textBody);
                 }
                 setDocumentBody(text);
+                setLastStatement(capitalize(textBody));
                 textToSpeech(`Statement added !, Next statement please !`);
                 resetTranscript();
             }
@@ -98,11 +101,28 @@ export default function Document(props) {
             }
         },
         {
-            command: 'Alexa clear (document)',
+            command: 'Alexa clear document',
             callback: () => {
                 setDocumentBody('');
                 resetTranscript();
                 textToSpeech(`Document cleared`);
+            }
+        },
+        {
+            command: 'Alexa clear last statement',
+            callback: () => {
+                setDocumentBody(documentBody.replace(lastStatement, ''));
+                setLastStatement('');
+                resetTranscript();
+                textToSpeech(`Last Statement cleared`);
+            }
+        },
+        {
+            command:'Alexa go to home (page)',
+            callback: () => {
+                props.history.push('/');
+                resetTranscript();
+                textToSpeech(`Redirecting To Home Page`);
             }
         }
     ]
@@ -229,7 +249,7 @@ export default function Document(props) {
             </div>
             <div className="mic-transcript-container">
                 <div className="wrap-mic-transcript">
-                    <div className="transcript-area">
+                    <div id='transcript' className="transcript-area">
                         {transcript}
                     </div>
                     <div className='mic-area'>

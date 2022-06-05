@@ -5,7 +5,7 @@ export default function Mic() {
 
   const commands = [
     {
-      command: 'open *',
+      command: 'open document *',
       callback: (docid) => {
         window.open('http://localhost:3000/document/' + docid)
       }
