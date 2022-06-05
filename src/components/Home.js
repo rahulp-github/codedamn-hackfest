@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import DocCards from './DocCards'
+import NewDocCard from './NewDocCard'
 import Mic from './Mic'
 import SpeechRecognition,{useSpeechRecognition} from 'react-speech-recognition'
 
@@ -12,6 +13,13 @@ export default function Home(props) {
             textToSpeech(`Opening Document ${docid}`);
             props.history.push('/document/' + docid)
           }
+        },
+        {
+            command: 'Alexa create document *',
+            callback: (docid) => {
+              textToSpeech(`Creating new Document ${docid}`);
+              props.history.push('/document/' + docid)
+            }
         }
     ]
 
@@ -39,6 +47,7 @@ export default function Home(props) {
     return <span>Browser doesn't support speech recognition.</span>;
     }
     
+    
     const startListening = () => SpeechRecognition.startListening({ continuous: true });
     const stopListening = () => SpeechRecognition.stopListening();
 
@@ -49,9 +58,7 @@ export default function Home(props) {
             <div className='doc-card-container'>
                 <div className="container">
                     <div className="row">
-                        <DocCards />
-                        <DocCards />
-                        <DocCards />
+                        <NewDocCard />
                         <DocCards />
                         <DocCards />
                         <DocCards />

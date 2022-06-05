@@ -5,7 +5,13 @@ export default function Mic() {
 
   const commands = [
     {
-      command: 'open document *',
+      command: 'Alexa open document *',
+      callback: (docid) => {
+        window.open('http://localhost:3000/document/' + docid)
+      }
+    },
+    {
+      command: 'Alexa create document *',
       callback: (docid) => {
         window.open('http://localhost:3000/document/' + docid)
       }
@@ -26,6 +32,7 @@ export default function Mic() {
   const startListening = () => SpeechRecognition.startListening({ continuous: true });
 
   return (
+    
     <div className="mic-transcript-container">
         <div className="wrap-mic-transcript">
             <div className="transcript-area"> {transcript}
