@@ -1,14 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 export default function Document(props) {
+
     const [title, setTitle] = useState('');
     const [documentBody, setDocumentBody] = useState('');
     const [lastStatement, setLastStatement] = useState('');
 
     // Get Document Id from URL
     const documentId = props.match.params.id;
+
+    // Populate Document if it exists
+    useEffect(() => {
+        // check if id exists in localStorage
+        if (localStorage.getItem(documentId)) {
+            // Get document from localStorage
+            const document = JSON.parse(localStorage.getItem(documentId));
+            // Set title and body
+            setTitle(document.title);
+            setDocumentBody(document.body);
+        }
+        startListening();
+    }, []);
 
     // Utility function of textToSpeech
     function textToSpeech(text) {
@@ -33,7 +47,7 @@ export default function Document(props) {
         {
             command: 'Alexa (enter) title *',
             callback: (title) => {
-                setTitle(title);
+                setTitle(capitalize(title));
                 textToSpeech(`Title set to ${title}`);
                 resetTranscript();
             }
@@ -93,10 +107,11 @@ export default function Document(props) {
             }
         },
         {
-            command: 'Alexa share (document)',
-            callback: () => {
-                console.log("Sharing Document");
-                sendMail();
+            command: 'Alexa share (document) with *',
+            callback: (email) => {
+                let trimmed_email = email.split(' ').join('').toLowerCase().replace('attherate', '@');
+                console.log("Trimmed Email ",trimmed_email);
+               // sendMail();
                 resetTranscript();
             }
         },
@@ -126,7 +141,6 @@ export default function Document(props) {
             }
         }
     ]
-
 
     // Speech Recognition
     const {

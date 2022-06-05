@@ -2,8 +2,13 @@ import React, { useEffect } from 'react'
 import DocCards from './DocCards'
 import Mic from './Mic'
 import SpeechRecognition,{useSpeechRecognition} from 'react-speech-recognition'
+import CommandModal from './Commands';
 
 export default function Home(props) {
+
+    useEffect(() => {
+        startListening();
+    }, []);
 
     const commands = [
         {
