@@ -23,6 +23,8 @@ export default function Mic() {
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
+  const startListening = () => SpeechRecognition.startListening({ continuous: true });
+
   return (
     <div className="mic-transcript-container">
         <div className="wrap-mic-transcript">
@@ -30,8 +32,7 @@ export default function Mic() {
             </div>
             <div className='mic-area'>
                 <span className='mic'>
-                    <i className="mic-icon fa-solid fa-microphone fa-2x" onClick={SpeechRecognition.startListening({continuous: true,
-                    language: 'en-US'})}></i>
+                    <i className="mic-icon fa-solid fa-microphone fa-2x" onClick={startListening}></i>
                 </span>
             </div>
         </div>
