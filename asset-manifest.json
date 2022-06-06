@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.15fbbe16.css",
+    "main.js": "/static/js/main.b7015d13.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/index.html",
+    "static/media/icon-sedans.svg": "/static/media/icon-sedans.e794502801c486bcffc3513f6f03141e.svg",
+    "main.15fbbe16.css.map": "/static/css/main.15fbbe16.css.map",
+    "main.b7015d13.js.map": "/static/js/main.b7015d13.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.15fbbe16.css",
+    "static/js/main.b7015d13.js"
+  ]
+}
