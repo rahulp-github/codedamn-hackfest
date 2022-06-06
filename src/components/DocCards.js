@@ -4,57 +4,29 @@ import sedan from '../images/icon-sedans.svg'
 import suv from '../images/icon-suvs.svg'
 import luxu from '../images/icon-luxury.svg'
 
-export default function DocCards() {
+export default function DocCards(props) {
+
+   const colors = ["orange","green","dark"]
+  
     return (
         <main>
       <section className="container">
-        <section className="card__container card__orange">
+        {props.docs.map((doc, index) => (
+        <section key={index} className={`doc-card card__container card__${colors[index%3]}`}>
           <div className="content__img">
             <img src={sedan} className="img__card" loading="lazy" alt="eljimmyramz Jaime Ramirez" title="eljimmyramz Jaime Ramirez"  />
           </div>
-          <h2 className="card__name">Sedans</h2>
+          <h2 className="card__name"> {JSON.parse(doc).title}</h2>
           <div className="card__parr">
             <p>
-              Choose a sedan for its affordability and excellent fuel economy.
-              Ideal for cruising in the city or on your next road trip.
+              {(JSON.parse(doc).body).substring(0, 50)}
             </p>
           </div>
           <div className="card__linkcont">
-          <Link to="/document/1" className="link__card color__link__dark">Open document 1</Link>
+          <Link to={`/document/${JSON.parse(doc).documentId}`} className="link__card color__link__dark">Open document {JSON.parse(doc).documentId}</Link>
           </div>
         </section>
-
-        <section className="card__container card__green">
-          <div className="content__img">
-            <img src={suv} className="img__card" loading="lazy" alt="eljimmyramz Jaime Ramirez" title="eljimmyramz Jaime Ramirez"  />
-          </div>
-          <h2 className="card__name">SUVs</h2>
-          <div className="card__parr">
-            <p>
-            Take an SUV for its spacious interior, power, and versatility. 
-            Perfect for your next family vacation and off-road adventures.
-            </p>
-          </div>
-          <div className="card__linkcont">
-          <Link to="/document/1" className="link__card color__link__green">Open document 2</Link>
-          </div>
-        </section>
-        
-        <section className="card__container card__dark">
-          <div className="content__img">
-            <img src={luxu} className="img__card" loading="lazy" alt="eljimmyramz Jaime Ramirez" title="eljimmyramz Jaime Ramirez"  />
-          </div>
-          <h2 className="card__name">Luxury</h2>
-          <div className="card__parr">
-            <p>
-            Cruise in the best car brands without the bloated prices. 
-            Enjoy the enhanced comfort of a luxury rental and arrive in style.
-            </p>
-          </div>
-          <div className="card__linkcont">
-          <Link to="/document/1" className="link__card color__link__dark">Open document 4</Link>
-          </div>
-        </section>
+        ))}
 
       </section>
     </main>

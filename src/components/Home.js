@@ -1,29 +1,43 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import DocCards from './DocCards'
 import NewDocCard from './NewDocCard'
 import Mic from './Mic'
-import SpeechRecognition,{useSpeechRecognition} from 'react-speech-recognition'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 import CommandModal from './Commands';
 
 export default function Home(props) {
 
+    const [docs, setDocs] = useState([]);
+    const all_docs = [];
     useEffect(() => {
         startListening();
+        for (var i = 0; i < localStorage.length; i++) {
+            all_docs.push(localStorage.getItem(localStorage.key(i)));
+        }
+        setDocs(all_docs);
     }, []);
 
     const commands = [
         {
-          command: 'Alexa open document *',
-          callback: (docid) => {
-            textToSpeech(`Opening Document ${docid}`);
-            props.history.push('/document/' + docid)
-          }
+            command: 'Alexa open document *',
+            callback: (docid) => {
+                textToSpeech(`Opening Document ${docid}`);
+                props.history.push('/document/' + docid)
+            }
         },
         {
-            command: 'Alexa create document *',
-            callback: (docid) => {
-              textToSpeech(`Creating new Document ${docid}`);
-              props.history.push('/document/' + docid)
+            command: 'Alexa create document',
+            callback: () => {
+                const all_keys = []
+                for (var i = 0; i < localStorage.length; i++) {
+                    all_keys.push(parseInt(localStorage.key(i)));
+                }
+                all_keys.sort();
+                var new_doc_id = 0;
+                if(all_keys.length != 0)
+                    new_doc_id = all_keys[all_keys.length - 1] + 1;
+                textToSpeech(`Creating new Document with Id ${new_doc_id}`);
+                props.history.push('/document/' + new_doc_id)
             }
         }
     ]
@@ -40,19 +54,19 @@ export default function Home(props) {
             }
         }, 500);
     }
-    
+
     const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition
-    } = useSpeechRecognition({commands});
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+    } = useSpeechRecognition({ commands });
 
     if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
+        return <span>Browser doesn't support speech recognition.</span>;
     }
-    
-    
+
+
     const startListening = () => SpeechRecognition.startListening({ continuous: true });
     const stopListening = () => SpeechRecognition.stopListening();
 
@@ -64,10 +78,7 @@ export default function Home(props) {
                 <div className="container">
                     <div className="row">
                         <NewDocCard />
-                        <DocCards />
-                        <DocCards />
-                        <DocCards />
-                        <DocCards />
+                        {docs && <DocCards docs={docs} />}
                     </div>
                 </div>
             </div>

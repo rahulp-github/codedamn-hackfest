@@ -72,6 +72,7 @@ export default function Document(props) {
             command: 'Alexa save (document)',
             callback: () => {
                 var jsonData = {
+                    documentId: documentId,
                     title: title,
                     body: documentBody
                 }
