@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import sedan from '../images/icon-sedans.svg'
-import suv from '../images/icon-suvs.svg'
-import luxu from '../images/icon-luxury.svg'
+
 
 export default function DocCards(props) {
 

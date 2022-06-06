@@ -45,6 +45,13 @@ export default function Document(props) {
     // All Commands Array of document
     const commands = [
         {
+            command:"Alexa show commands",
+            callback:()=>{
+                textToSpeech("Navigating to Commands Page");
+                props.history.push('/commands');
+            }
+        },
+        {
             command: 'Alexa (enter) title *',
             callback: (title) => {
                 setTitle(capitalize(title));
@@ -62,9 +69,9 @@ export default function Document(props) {
                 else {
                     text = documentBody + ' ' + capitalize(textBody);
                 }
+                setLastStatement(documentBody);
                 setDocumentBody(text);
-                setLastStatement(capitalize(textBody));
-                textToSpeech(`Statement added !, Next statement please !`);
+                textToSpeech(`Statement added !`);
                 resetTranscript();
             }
         },
@@ -112,7 +119,7 @@ export default function Document(props) {
             callback: (email) => {
                 let trimmed_email = email.split(' ').join('').toLowerCase().replace('attherate', '@');
                 console.log("Trimmed Email ",trimmed_email);
-               // sendMail();
+                sendMail();
                 resetTranscript();
             }
         },
@@ -127,7 +134,7 @@ export default function Document(props) {
         {
             command: 'Alexa clear last statement',
             callback: () => {
-                setDocumentBody(documentBody.replace(lastStatement, ''));
+                setDocumentBody(lastStatement);
                 setLastStatement('');
                 textToSpeech(`Last Statement cleared`);
                 resetTranscript();

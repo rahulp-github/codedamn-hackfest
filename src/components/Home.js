@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import DocCards from './DocCards'
 import NewDocCard from './NewDocCard'
-import Mic from './Mic'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
-import CommandModal from './Commands';
+
 
 export default function Home(props) {
 
@@ -18,6 +17,13 @@ export default function Home(props) {
     }, []);
 
     const commands = [
+        {
+            command:"Alexa show commands",
+            callback:()=>{
+                textToSpeech("Navigating to Commands Page");
+                props.history.push('/commands');
+            }
+        },
         {
             command: 'Alexa open document *',
             callback: (docid) => {

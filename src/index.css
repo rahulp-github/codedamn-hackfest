@@ -200,11 +200,12 @@ p{
 /* ----------------------- Mic footer -----------------------------------------*/
 
 .mic-transcript-container{
-  margin-left:30%;
-  width: 50%;
+  margin-left:20%;
+  margin-right:20%;
   z-index: 1;
-  border: 1px solid #ccc;
-  background-color: rgb(80, 80, 237);
+  width: 60%;
+  /* border: 1px solid #ccc; */
+  /* background-color: rgb(80, 80, 237); */
   padding: 10px;
   border-radius: 42px;
   position: fixed;
@@ -218,7 +219,7 @@ p{
 }
 
 .transcript-area{
-  border: 1px solid yellow;
+  border: 1px solid blue;
   width: 100%;
   padding: 10px;
   background-color: white;
@@ -234,6 +235,7 @@ p{
   height: 50px;
   width: 50px;
   background-color: white;
+  border: 1px solid blue;
   border-radius: 50%;
   display: inline-block;
   padding: 5px;
@@ -383,6 +385,11 @@ p{
   text-align: center;
   font-weight: 600;
   margin-top:1%;
+}
+
+.alert-container{
+  margin-left: 10%;
+  margin-right:10%;
 }
 
 .fa-circle-info{
