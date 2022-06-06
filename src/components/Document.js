@@ -71,16 +71,16 @@ export default function Document(props) {
             callback: (text) => {
                 var arr = text.split(' ');
                 setDocumentBody(documentBody.replaceAll(arr[0], arr[2]));
-                resetTranscript();
                 textToSpeech(`${arr[0]} replaced with ${arr[2]}`);
+                resetTranscript();
             }
         },
         {
             command: 'Alexa delete *',
             callback: (text) => {
                 setDocumentBody(documentBody.replaceAll(text, ''));
-                resetTranscript();
                 textToSpeech(`${text} deleted`);
+                resetTranscript();
             }
         },
         {
@@ -88,8 +88,8 @@ export default function Document(props) {
             callback: () => {
                 console.log("Downloading Document");
                 Export2Word("document-area", `document-${documentId}`);
-                resetTranscript();
                 textToSpeech(`Document downloaded`);
+                resetTranscript();
             }
         },
         {
@@ -104,8 +104,8 @@ export default function Document(props) {
             command: 'Alexa clear document',
             callback: () => {
                 setDocumentBody('');
-                resetTranscript();
                 textToSpeech(`Document cleared`);
+                resetTranscript();
             }
         },
         {
@@ -113,16 +113,16 @@ export default function Document(props) {
             callback: () => {
                 setDocumentBody(documentBody.replace(lastStatement, ''));
                 setLastStatement('');
-                resetTranscript();
                 textToSpeech(`Last Statement cleared`);
+                resetTranscript();
             }
         },
         {
             command:'Alexa go to home (page)',
             callback: () => {
                 props.history.push('/');
-                resetTranscript();
                 textToSpeech(`Redirecting To Home Page`);
+                resetTranscript();
             }
         }
     ]
@@ -242,7 +242,7 @@ export default function Document(props) {
                             <h1>{title != '' ? title : "Enter a Title"}</h1>
                         </div>
                         <div className='document-body'>
-                            <p>{documentBody != '' ? documentBody : "Say Alexa Type to type document body"}</p>
+                            <p style={{color:"black"}}>{documentBody != '' ? documentBody : "Say Alexa Type to type document body"}</p>
                         </div>
                     </div>
                 </div>
