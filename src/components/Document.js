@@ -118,7 +118,7 @@ export default function Document(props) {
             }
         },
         {
-            command:'Alexa go to home (page)',
+            command:'Alexa go (back) to home (page)',
             callback: () => {
                 props.history.push('/');
                 textToSpeech(`Redirecting To Home Page`);
