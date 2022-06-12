@@ -42,7 +42,9 @@ export default function Home(props) {
             callback: () => {
                 const all_keys = []
                 for (var i = 0; i < localStorage.length; i++) {
-                    all_keys.push(parseInt(localStorage.key(i)));
+                    if(!isNaN(localStorage.key(i))){
+                        all_keys.push(parseInt(localStorage.key(i)));
+                    }
                 }
                 all_keys.sort();
                 var new_doc_id = 0;
