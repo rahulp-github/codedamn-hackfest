@@ -7,15 +7,15 @@ import Commands from "./components/Commands";
 
 function App() {
   return (
-    <Router >
+    <Router>
       <div className="App">
         <Navbar />
         <Switch >
-          <Route exact path="/" component={Home}>
+          <Route exact path="/codedamn-hackfest" component={Home}>
           </Route>
-          <Route exact path="/document/:id" component={Document}>
+          <Route exact path="/codedamn-hackfest/document/:id" component={Document}>
           </Route>
-          <Route exact path="/commands" component={Commands}>
+          <Route exact path="/codedamn-hackfest/commands" component={Commands}>
           </Route>
         </Switch>
       </div>

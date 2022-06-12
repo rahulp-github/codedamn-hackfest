@@ -10,7 +10,9 @@ export default function Home(props) {
     useEffect(() => {
       //  startListening();
         for (var i = 0; i < localStorage.length; i++) {
-            all_docs.push(localStorage.getItem(localStorage.key(i)));
+            if(!isNaN(localStorage.key(i))){
+                all_docs.push(localStorage.getItem(localStorage.key(i)));
+            }
         }
         setDocs(all_docs);
     }, []);
@@ -32,7 +34,7 @@ export default function Home(props) {
                     document_id = numArr.indexOf(docid);
                 }
                 textToSpeech(`Opening Document ${document_id}`);
-                props.history.push('/document/' + document_id)
+                props.history.push('/codedamn-hackfest/document/' + document_id)
             }
         },
         {
@@ -47,7 +49,7 @@ export default function Home(props) {
                 if(all_keys.length != 0)
                     new_doc_id = all_keys[all_keys.length - 1] + 1;
                 textToSpeech(`Creating new Document with Id ${new_doc_id}`);
-                props.history.push('/document/' + new_doc_id)
+                props.history.push('/codedamn-hackfest/document/' + new_doc_id)
             }
         }
     ]

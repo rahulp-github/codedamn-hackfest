@@ -22,7 +22,7 @@ export default function DocCards(props) {
             </p>
           </div>
           <div className="card__linkcont">
-          <Link to={`/document/${JSON.parse(doc).documentId}`} className="link__card color__link__dark">Open document {JSON.parse(doc).documentId}</Link>
+          <Link to={`/codedamn-hackfest/document/${JSON.parse(doc).documentId}`} className="link__card color__link__dark">Open document {JSON.parse(doc).documentId}</Link>
           </div>
         </section>
         ))}

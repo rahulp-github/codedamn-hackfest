@@ -25,7 +25,7 @@ export default function Commands(props) {
         {
             command: 'Alexa go (back) to home (page)',
             callback: () => {
-                props.history.push('/');
+                props.history.push('/codedamn-hackfest');
                 textToSpeech(`Redirecting To Home Page`);
                 resetTranscript();
             }

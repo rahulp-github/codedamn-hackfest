@@ -8,7 +8,7 @@ export default function Navbar() {
 
   return (
     <nav className="navigation">
-      <Link to="/" className="brand-name">
+      <Link to="/codedamn-hackfest" className="brand-name">
       Speech Docs
       </Link>
       <button
@@ -36,10 +36,10 @@ export default function Navbar() {
       >
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/codedamn-hackfest">Home</Link>
           </li>
           <li>
-            <Link to="/commands">Commands</Link>
+            <Link to="/codedamn-hackfest/commands">Commands</Link>
           </li>
         </ul>
       </div>

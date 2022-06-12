@@ -49,7 +49,7 @@ export default function Document(props) {
             command: "Alexa show commands",
             callback: () => {
                 textToSpeech("Navigating to Commands Page");
-                props.history.push('/commands');
+                props.history.push('/codedamn-hackfest/commands');
             }
         },
         {
@@ -152,7 +152,7 @@ export default function Document(props) {
         {
             command: 'Alexa go (back) to home (page)',
             callback: () => {
-                props.history.push('/');
+                props.history.push('/codedamn-hackfest');
                 textToSpeech(`Redirecting To Home Page`);
                 resetTranscript();
             }
@@ -276,7 +276,7 @@ export default function Document(props) {
                     <div className='wrapper'>
                         <div className='top-buttons'>
                             <div className='back-button'>
-                                <Link to="/" ><i className="icon fa-solid fa-arrow-left fa-2x"></i></Link>
+                                <Link to="/codedamn-hackfest" ><i className="icon fa-solid fa-arrow-left fa-2x"></i></Link>
                             </div>
                             <div className='save-button'>
                                 <i className="icon fa-solid fa-floppy-disk fa-2x"></i>
