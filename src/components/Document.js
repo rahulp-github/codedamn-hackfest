@@ -224,10 +224,10 @@ export default function Document(props) {
         window.Email.send({
             Host: "smtp.elasticemail.com",
             Port: 2525,
-            Username: process.env.username,
-            Password: process.env.password,
+            Username: "shettyrohit268@gmail.com",
+            Password: "961CCBA491B80A118101899A82CBD6217988",
             To: `${email_address}`,
-            From: process.env.username,
+            From: "shettyrohit268@gmail.com",
             Subject: "Word Document From Speech Docs !",
             Body: `Word document is ready`,
             Attachments: [
