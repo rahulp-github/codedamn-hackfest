@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
@@ -21,7 +21,7 @@ export default function Document(props) {
             setTitle(document.title);
             setDocumentBody(document.body);
         }
-        startListening();
+       // startListening();
     }, []);
 
     // Utility function of textToSpeech
@@ -42,11 +42,12 @@ export default function Document(props) {
         return s[0].toUpperCase() + s.slice(1);
     }
 
+
     // All Commands Array of document
     const commands = [
         {
-            command:"Alexa show commands",
-            callback:()=>{
+            command: "Alexa show commands",
+            callback: () => {
                 textToSpeech("Navigating to Commands Page");
                 props.history.push('/commands');
             }
@@ -63,7 +64,7 @@ export default function Document(props) {
             command: 'Alexa type *',
             callback: (textBody) => {
                 var text;
-                if (documentBody == ''){
+                if (documentBody == '') {
                     text = capitalize(textBody);
                 }
                 else {
@@ -100,9 +101,15 @@ export default function Document(props) {
         {
             command: 'Alexa delete *',
             callback: (text) => {
-                setDocumentBody(documentBody.replaceAll(text, ''));
-                textToSpeech(`${text} deleted`);
-                resetTranscript();
+                if(documentBody.includes(text)){
+                    setDocumentBody(documentBody.replaceAll(text, ''));
+                    textToSpeech(`${text} deleted`);
+                    resetTranscript();
+                }
+                else{
+                    textToSpeech(`${text} not found`);
+                    resetTranscript();
+                }
             }
         },
         {
@@ -118,8 +125,8 @@ export default function Document(props) {
             command: 'Alexa share (document) with *',
             callback: (email) => {
                 let trimmed_email = email.split(' ').join('').toLowerCase().replace('attherate', '@');
-                console.log("Trimmed Email ",trimmed_email);
-                sendMail();
+                console.log("Trimmed Email ", trimmed_email);
+                sendMail(trimmed_email);
                 resetTranscript();
             }
         },
@@ -127,6 +134,8 @@ export default function Document(props) {
             command: 'Alexa clear document',
             callback: () => {
                 setDocumentBody('');
+                setTitle('');
+                setLastStatement('');
                 textToSpeech(`Document cleared`);
                 resetTranscript();
             }
@@ -141,7 +150,7 @@ export default function Document(props) {
             }
         },
         {
-            command:'Alexa go (back) to home (page)',
+            command: 'Alexa go (back) to home (page)',
             callback: () => {
                 props.history.push('/');
                 textToSpeech(`Redirecting To Home Page`);
@@ -207,7 +216,7 @@ export default function Document(props) {
     }
 
     // Function to send mail 
-    function sendMail() {
+    function sendMail(email_address) {
         const ele = document.getElementById('document-area');
         var data = btoa(ele.innerHTML);
         var dataUri = "data:" + 'application/msword' + ";base64," + data;
@@ -217,55 +226,91 @@ export default function Document(props) {
             Port: 2525,
             Username: "shettyrohit268@gmail.com",
             Password: "961CCBA491B80A118101899A82CBD6217988",
-            To: `prajapatirahul1712001@gmail.com`,
+            To: `${email_address}`,
             From: "shettyrohit268@gmail.com",
-            Subject: "Hello from rahul",
-            Body: `Word Doc`,
+            Subject: "Word Document From Speech Docs !",
+            Body: `Word document is ready`,
             Attachments: [
                 {
                     name: 'document.doc',
                     data: dataUri
                 }]
         }).
-        then(
-            message => {
-                textToSpeech(`Document Shared Successfully`);
-            }
-        )
-        .catch(err => {
-            textToSpeech(`Document Shared Failed`);
-        });
+            then(
+                message => {
+                    if (message == "OK") {
+                        textToSpeech(`Document Shared Successfully`);
+                        alert("Document shared at " + email_address);
+                    }
+                    else
+                        alert("Some Error Occurred " + message)
+                }
+            )
+            .catch(err => {
+                textToSpeech(`Document Shared Failed`);
+            });
     }
 
     console.log(transcript);
 
     return (
         <div>
-            <div className='document-container'>
-                <div className='wrapper'>
-                    <div className='top-buttons'>
-                        <div className='back-button'>
-                            <Link to="/" ><i className="icon fa-solid fa-arrow-left fa-2x"></i></Link>
+            <div className='document-instructions-container'>
+                <div className='instructions-container-1'>
+                    <div className="instruction-title">
+                        <h5>Instructions</h5>
+                    </div>
+                    <div className='instruction-points'>
+                        <h6 className='point-title'>Document Related Commands</h6>
+                        <p>	&#128073; Alexa enter Title "title" </p>
+
+                        <p>	&#128073; Alexa type Body "statement"</p>
+                        <p>	&#128073; Alexa replace "word1" with "word2"
+                        </p>
+                        <p>	&#128073; Alexa delete "word"</p>
+                        <p>	&#128073; Alexa clear last statement </p>
+                        <p>	&#128073; Alexa clear document</p>
+                    </div>
+                </div>
+                <div className='document-container'>
+                    <div className='wrapper'>
+                        <div className='top-buttons'>
+                            <div className='back-button'>
+                                <Link to="/" ><i className="icon fa-solid fa-arrow-left fa-2x"></i></Link>
+                            </div>
+                            <div className='save-button'>
+                                <i className="icon fa-solid fa-floppy-disk fa-2x"></i>
+                            </div>
+                            <div className='download-button'>
+                                <i onClick={() => {
+                                    Export2Word("document-area", `document-${documentId}`);
+                                }} className="icon fa-solid fa-download fa-2x"></i>
+                            </div>
+                            <div className='share-button'>
+                                <i onClick={sendMail} className="icon fa-solid fa-share-nodes fa-2x"></i>
+                            </div>
                         </div>
-                        <div className='save-button'>
-                            <i className="icon fa-solid fa-floppy-disk fa-2x"></i>
-                        </div>
-                        <div className='download-button'>
-                            <i onClick={() => {
-                                Export2Word("document-area", `document-${documentId}`);
-                            }} className="icon fa-solid fa-download fa-2x"></i>
-                        </div>
-                        <div className='share-button'>
-                            <i onClick={sendMail} className="icon fa-solid fa-share-nodes fa-2x"></i>
+                        <div id='document-area' className='document-area'>
+                            <div className='document-title'>
+                                <h1>{title != '' ? title : "Enter a Title"}</h1>
+                            </div>
+                            <div className='document-body'>
+                                <p style={{ color: "black" }}>{documentBody != '' ? documentBody : "Say Alexa Type to type document body"}</p>
+                            </div>
                         </div>
                     </div>
-                    <div id='document-area' className='document-area'>
-                        <div className='document-title'>
-                            <h1>{title != '' ? title : "Enter a Title"}</h1>
-                        </div>
-                        <div className='document-body'>
-                            <p style={{color:"black"}}>{documentBody != '' ? documentBody : "Say Alexa Type to type document body"}</p>
-                        </div>
+                </div>
+                <div className='instructions-container-2'>
+                    <div className="instruction-title">
+                        <h5>Instructions</h5>
+                    </div>
+                    <div className='instruction-points'>
+                        <h6 className='point-title'>Saving , Sharing And   Downloading Document</h6>
+                        <p>	&#128073; Alexa save document</p>
+                        <p>	&#128073; Alexa download document</p>
+                        <p>	&#128073; Alexa share document with "email address" - ( Email Address 
+                            Should be said in one go and use word "at the rate" for @ symbol)
+                        </p>
                     </div>
                 </div>
             </div>
@@ -275,12 +320,15 @@ export default function Document(props) {
                         {transcript}
                     </div>
                     <div className='mic-area'>
-                        <span className='mic'>
-                            <i className="mic-icon fa-solid fa-microphone fa-2x" onClick={startListening}></i>
+                    <span className='mic'>
+                          { listening ? 
+                           <i className="mic-icon fa-solid fa-microphone fa-2x" onClick={stopListening} > </i> :
+                           <i className="mic-icon fa-solid fa-microphone-slash fa-2x" onClick={startListening}></i>
+                           }
                         </span>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

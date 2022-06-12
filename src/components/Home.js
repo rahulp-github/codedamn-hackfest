@@ -4,18 +4,18 @@ import NewDocCard from './NewDocCard'
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 
-export default function Home(props) {
-
+export default function Home(props) { 
     const [docs, setDocs] = useState([]);
     const all_docs = [];
     useEffect(() => {
-        startListening();
+      //  startListening();
         for (var i = 0; i < localStorage.length; i++) {
             all_docs.push(localStorage.getItem(localStorage.key(i)));
         }
         setDocs(all_docs);
     }, []);
 
+    var numArr = ["zero", "one", "to", "three", "four", "five", "six", "seven", "eight", "nine","ten"];
     const commands = [
         {
             command:"Alexa show commands",
@@ -27,8 +27,12 @@ export default function Home(props) {
         {
             command: 'Alexa open document *',
             callback: (docid) => {
-                textToSpeech(`Opening Document ${docid}`);
-                props.history.push('/document/' + docid)
+                var document_id = docid;
+                if(numArr.indexOf(docid) != -1){
+                    document_id = numArr.indexOf(docid);
+                }
+                textToSpeech(`Opening Document ${document_id}`);
+                props.history.push('/document/' + document_id)
             }
         },
         {
@@ -78,6 +82,8 @@ export default function Home(props) {
 
     console.log(transcript)
 
+
+
     return (
         <div>
             <div className='doc-card-container'>
@@ -94,7 +100,10 @@ export default function Home(props) {
                     </div>
                     <div className='mic-area'>
                         <span className='mic'>
-                            <i className="mic-icon fa-solid fa-microphone fa-2x" onClick={startListening}></i>
+                          { listening ? 
+                          <i className="mic-icon fa-solid fa-microphone fa-2x" onClick={stopListening} > </i> :
+                           <i className="mic-icon fa-solid fa-microphone-slash fa-2x" onClick={startListening}></i>
+                           }
                         </span>
                     </div>
                 </div>

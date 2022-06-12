@@ -150,8 +150,11 @@ export default function Commands(props) {
                     <div className="transcript-area"> {transcript}
                     </div>
                     <div className='mic-area'>
-                        <span className='mic'>
-                            <i className="mic-icon fa-solid fa-microphone fa-2x" onClick={startListening}></i>
+                    <span className='mic'>
+                          { listening ? 
+                          <i className="mic-icon fa-solid fa-microphone fa-2x" onClick={stopListening} > </i> :
+                           <i className="mic-icon fa-solid fa-microphone-slash fa-2x" onClick={startListening}></i>
+                           }
                         </span>
                     </div>
                 </div>

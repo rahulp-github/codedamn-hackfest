@@ -7,10 +7,10 @@ import Commands from "./components/Commands";
 
 function App() {
   return (
-    <Router>
+    <Router >
       <div className="App">
         <Navbar />
-        <Switch>
+        <Switch >
           <Route exact path="/" component={Home}>
           </Route>
           <Route exact path="/document/:id" component={Document}>
