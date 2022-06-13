@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/codedamn-hackfest/static/css/main.993f02eb.css",
-    "main.js": "/codedamn-hackfest/static/js/main.0edc2c3d.js",
+    "main.css": "/codedamn-hackfest/static/css/main.52108850.css",
+    "main.js": "/codedamn-hackfest/static/js/main.d78b3817.js",
     "static/js/787.c4e7f8f9.chunk.js": "/codedamn-hackfest/static/js/787.c4e7f8f9.chunk.js",
     "index.html": "/codedamn-hackfest/index.html",
     "static/media/icon-sedans.svg": "/codedamn-hackfest/static/media/icon-sedans.e794502801c486bcffc3513f6f03141e.svg",
-    "main.993f02eb.css.map": "/codedamn-hackfest/static/css/main.993f02eb.css.map",
-    "main.0edc2c3d.js.map": "/codedamn-hackfest/static/js/main.0edc2c3d.js.map",
+    "main.52108850.css.map": "/codedamn-hackfest/static/css/main.52108850.css.map",
+    "main.d78b3817.js.map": "/codedamn-hackfest/static/js/main.d78b3817.js.map",
     "787.c4e7f8f9.chunk.js.map": "/codedamn-hackfest/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.993f02eb.css",
-    "static/js/main.0edc2c3d.js"
+    "static/css/main.52108850.css",
+    "static/js/main.d78b3817.js"
   ]
 }
