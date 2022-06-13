@@ -145,6 +145,9 @@ export default function Commands(props) {
                     </div>
                 </div>
             </div>
+            <div className='dummy'>
+
+            </div>
             <div className="mic-transcript-container">
                 <div className="wrap-mic-transcript">
                     <div className="transcript-area"> {transcript}
