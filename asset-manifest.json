@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/codedamn-hackfest/static/css/main.993f02eb.css",
-    "main.js": "/codedamn-hackfest/static/js/main.ba022ef5.js",
+    "main.js": "/codedamn-hackfest/static/js/main.0edc2c3d.js",
     "static/js/787.c4e7f8f9.chunk.js": "/codedamn-hackfest/static/js/787.c4e7f8f9.chunk.js",
     "index.html": "/codedamn-hackfest/index.html",
     "static/media/icon-sedans.svg": "/codedamn-hackfest/static/media/icon-sedans.e794502801c486bcffc3513f6f03141e.svg",
     "main.993f02eb.css.map": "/codedamn-hackfest/static/css/main.993f02eb.css.map",
-    "main.ba022ef5.js.map": "/codedamn-hackfest/static/js/main.ba022ef5.js.map",
+    "main.0edc2c3d.js.map": "/codedamn-hackfest/static/js/main.0edc2c3d.js.map",
     "787.c4e7f8f9.chunk.js.map": "/codedamn-hackfest/static/js/787.c4e7f8f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.993f02eb.css",
-    "static/js/main.ba022ef5.js"
+    "static/js/main.0edc2c3d.js"
   ]
 }
