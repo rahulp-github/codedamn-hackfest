@@ -1,70 +1,90 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CodeDamn hackfest 3rd Place :3rd_place_medal:
+---
+## Speech Docs — Interact vocally with Documents
+---
+From School students to university students and to working professionals everyone has its’s daily dependencies on word documents. This documents can be used to convey their ideas, projects or even sometimes taking notes. Keyboard and mouse are useful for most but there are some individuals who have unsupportable conditions such as Arthritis in the hand, Parkinson’s, Carpal Tunnel Syndrome, or Essential Tremor for which keyboard is painful.
 
-## Available Scripts
+To solve this problem we come up with a solution Speech docs. Speech docs aims to solve such problem by enabling only voice to interact with the documents. Users can give commands by their voice to perform any operations such as create, open, write, replace word, etc.
 
-In the project directory, you can run:
+---
+## Overview
+Speech Docs is a tool for editing documents with your speech. You can create a new document, update its contents using functions such as (replace, delete, clear, enter title, type body, etc.) and save it, as well as download or export the document to a word file and share it with anybody via email.
 
-### `npm start`
+It is designed for people who are unable to type on a keyboard or utilize word processing software. Speech Docs also allows you to navigate using your speech. Voice commands can also be used to navigate between pages. Before each command, the user must utter the “Trigger Word,” which is akin to the Amazon and Google concepts of “Alexa” and “Ok Google.” We use “Alexa” as our “Trigger Word” in Speech Docs. This ensures that commands do not conflict with the user’s natural language.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+----
+## Working
+We use browsers “localstorage” to store all the user documents in key-value pairs or JSON format. A unique document id is assigned for each document so that we can easily retrieve document contents from localstorage by using document id. We encode the document text into base64 format and then attach it to the email body using the smtp js library to share it over email. For downloading the document we convert the text into a downloadable word file link and then use js click() function to click the download link. In addition, we use “text to speech” to provide feedback for each command if it is correctly detected.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Speech Docs Functions
 
-### `npm test`
+- Create documents
+- Open documents
+- Save documents
+- Download documents
+- Share documents
+- Change words
+- Delete words and sentences
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Screenshots
+Home Page
 
-### `npm run build`
+![App Screenshot](https://user-images.githubusercontent.com/71189359/173292280-f1138e96-a0f2-4f43-9b68-220b2d8474f1.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Document Page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![App Screenshot](https://user-images.githubusercontent.com/71189359/173292376-9924391a-60d8-4c30-9dc7-699913654ad4.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Commands Page
 
-### `npm run eject`
+![App Screenshot](https://user-images.githubusercontent.com/71189359/173292491-cbd7f342-26a2-4695-99a8-d7f1ea88e1cf.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Tech Stack
+- React.js for building the app
+- For speech recognition and Natural Language Processing we use react-speech-recognition npm library which under the hood uses Google Speech API
+- For text to speech we use Speech Synthesis which is inbuilt in JS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Run Locally
 
-## Learn More
+Clone the project
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  git clone https://github.com/rahulp-github/codedamn-hackfest
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Go to the project directory
 
-### Code Splitting
+```bash
+  cd codedamn-hackfest
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Install dependencies
 
-### Analyzing the Bundle Size
+```bash
+  npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Start the server
 
-### Making a Progressive Web App
+```bash
+  npm start
+```
+---
+## Links
+- View Full Article at - https://medium.com/@pandeyhrithik663/speech-docs-interact-with-documents-972e67688d60
+- Project Deployed At - https://rahulp-github.github.io/codedamn-hackfest/
+- Codedamn Hackfest - https://codedamn.com/hackfest
+---
+## Authors
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- [Vishal Pandey](https://github.com/addtogether)
+- [Hrithik Pandey](https://github.com/Hrithik2009)
+- [Rahul Prajapati](https://github.com/rahulp-github)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
