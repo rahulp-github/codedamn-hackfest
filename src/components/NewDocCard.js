@@ -4,6 +4,7 @@ import sedan from '../images/icon-sedans.svg'
 
 
 export default function NewDocCard() {
+    
     return (
         <main>
       <section className="container">
@@ -18,7 +19,7 @@ export default function NewDocCard() {
             </p>
           </div>
           <div className="card__linkcont">
-          <Link to="codedamn-hackfest/document/dummy" className="link__card color__link__dark">Create document</Link>
+          <Link to="/codedamn-hackfest/document/dummy" className="link__card color__link__dark">Create document</Link>
           </div>
         </section>
       </section>

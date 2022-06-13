@@ -90,6 +90,12 @@ export default function Home(props) {
 
     return (
         <div>
+            <div className='alert-container'>
+                    <div className="alert alert-primary" role="alert">
+                        "Alexa Create Document" to create a new document &
+                        "Alexa Open Document 'id' " to open a document
+                    </div>
+            </div>
             <div className='doc-card-container'>
                 <div className="container">
                     <div className="row">
